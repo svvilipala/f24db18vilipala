@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  h1= title
+  -   
+    let results = [
+      {
+        spice_name: "Turmeric",
+        spice_origin: "India", 
+        spice_cost: 20
+      },
+      {
+        spice_name: "Cinnamon", 
+        spice_origin: "Sri Lanka", 
+        spice_cost: 40
+      },
+      {
+        spice_name: "Bay leaf", 
+        spice_origin: "Himalayas", 
+        spice_cost: 50
+      }
+    ]
+  div(class="container-fluid")
+    div(class="row")
+      each item, index in results  
+        div(class="col-sm-2", onclick=`buy(${index})`) 
+          p Name: #{item.spice_name}
+          p Origin: #{item.spice_origin}
+          p Cost: #{item.spice_cost}
+          //- button(type="button", class="btn btn-primary") 
+        br
+
+  script.
+    function buy(itemNum) {
+      alert(`You purchased item ${itemNum + 1}`);
+    }
+  
+
+

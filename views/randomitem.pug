@@ -1,0 +1,16 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+
+extends layout
+
+block content
+  h1= title
+  - var image_names = ['spice1.jpg', 'spice2.jpg', 'spice3.jpg', 'spice4.jpg', 'spice5.jpg'] 
+
+
+  - for (let i = 0; i < 3; i++)
+    - var randomIndex = Math.floor(Math.random() * image_names.length)
+    - var imageName = image_names[randomIndex]
+    img(src=`/images/${imageName}`, alt=`Random ${imageName}`, height="300", width="300")
