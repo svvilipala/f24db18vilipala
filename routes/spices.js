@@ -1,9 +1,30 @@
+// var express = require('express');
+// var spices_controlers = require('../controllers/spices');
+// var router = express.Router();
+
+// // GET request for all spices
+// router.get('/', spices_controlers.spice_view_all_Page);
+
+// // GET request for one spice detail
+// router.get('/:id', spices_controlers.spice_detail);
+
+// // POST request for creating a spice
+// router.post('/', spices_controlers.spice_create_post);
+
+// // PUT request to update a spice
+// router.put('/:id', spices_controlers.spice_update_put);
+
+// // DELETE request to delete a spice
+// router.delete('/:id', spices_controlers.spice_delete);
+
+// module.exports = router;
+
+
 var express = require('express');
+var spice_controlers = require('../controllers/spices'); // Corrected the typo here
 var router = express.Router();
 
-/* GET Spices page. */
-router.get('/', function(req, res)  {
-  res.render('spices', { title: 'Search Results - Spices' });
-});
+/* GET spices page. */
+router.get('/', spice_controlers.spice_view_all_Page);  // Corrected the reference to spice_controlers
 
 module.exports = router;

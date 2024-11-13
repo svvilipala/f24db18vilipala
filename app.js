@@ -12,10 +12,11 @@ var Spice = require('./models/spices');
 
 mongoose.connect(connectionString);
 
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function() {
-  console.log("Connected to DB succeeded.");
+console.log("Connected to DB succeeded.");
   
 });
 

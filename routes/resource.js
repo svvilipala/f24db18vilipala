@@ -1,11 +1,10 @@
-// routes/resource.js
-
 var express = require('express');
 var router = express.Router();
 
 // Require controller modules.
 var api_controller = require('../controllers/api');
-var spice_controller = require('../controllers/spices');  
+var spice_controller = require('../controllers/spices');
+
 
 /// API ROUTE ///
 // GET resources base.
@@ -24,3 +23,4 @@ router.get('/spices/:id', spice_controller.spice_detail);
 router.get('/spices', spice_controller.spice_list);
 
 module.exports = router;
+
