@@ -3,13 +3,17 @@
 var Spice = require('../models/spices');  
 
 // List of all Spices
-exports.spice_list = function(req, res) {
-    Spice.find({}, function(err, spices) {
-        if (err) {
-            return res.status(500).send(err);
-        }
-        res.json(spices);
-    });
+exports.spice_list = async function(req, res) {
+    try {
+        // Retrieve all spices from the database
+        const allSpices = await Spice.find();  // Using the `find()` method to get all documents in the collection
+
+        // Send the list of spices as a JSON response
+        res.json(allSpices);
+    } catch (err) {
+        // If an error occurs, send a 500 status code and error message
+        res.status(500).json({ error: err.message });
+    }
 };
 
 // Detail of a specific Spice
