@@ -25,7 +25,7 @@ var usersRouter = require('./routes/users');
 var spicesRouter = require('./routes/spices');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
-// var resourceRouter = require('./routes/resource');
+var resourceRouter = require('./routes/resource');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -44,7 +44,7 @@ app.use('/users', usersRouter);
 app.use('/spices', spicesRouter);  
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
-// app.use('/resource',resourceRouter);
+app.use('/resource',resourceRouter);
 
 
 async function recreateDB() {

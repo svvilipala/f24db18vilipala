@@ -4,9 +4,9 @@ block content
   ul
     each spices in results 
       ul 
-        li= spice_name
-        li= spice_origin 
-        li= spice_cost 
+        li= spices.spice_name
+        li= spices.spice_origin 
+        li= spices.spice_cost 
         br
 
 
@@ -43,5 +43,4 @@ block content
   //-     alert(`You purchased item ${itemNum + 1}`);
   //-   }
   
-
 

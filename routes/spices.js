@@ -22,23 +22,31 @@
 
 // 
 
+// var express = require('express');
+// var router = express.Router();
+// var Spice = require('../models/spices'); // Import the Spice model
+
+// // Spice Search Results page
+// router.get('/', function(req, res, next) {
+//     Spice.find({}, function(err, spices) {  // Find all spices in the collection
+//         if (err) {
+//             return next(err); // Handle errors
+//         }
+//         res.render('spices', {
+//             title: 'Spice Search Results',
+//             spices: spices  // Pass the spices data to the view
+//         });
+//     });
+// });
+
+// module.exports = router;
+
 var express = require('express');
+var spice_controlers = require('../controllers/spices'); // Corrected the typo here
 var router = express.Router();
-var Spice = require('../models/spices'); // Import the Spice model
-
-// Spice Search Results page
-router.get('/', function(req, res, next) {
-    Spice.find({}, function(err, spices) {  // Find all spices in the collection
-        if (err) {
-            return next(err); // Handle errors
-        }
-        res.render('spices', {
-            title: 'Spice Search Results',
-            spices: spices  // Pass the spices data to the view
-        });
-    });
-});
-
+ 
+/* GET spices page. */
+router.get('/', spice_controlers.spice_view_all_Page);  // Corrected the reference to spice_controlers
+ 
 module.exports = router;
-
-
+ 
