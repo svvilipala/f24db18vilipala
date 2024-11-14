@@ -48,5 +48,6 @@ var router = express.Router();
 /* GET spices page. */
 router.get('/', spice_controlers.spice_view_all_Page);  // Corrected the reference to spice_controlers
  
+router.get('/:id', spice_controlers.spice_detail); 
 module.exports = router;
- 
+
