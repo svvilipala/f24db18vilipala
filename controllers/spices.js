@@ -66,6 +66,7 @@ exports.spice_update_put = async function(req, res) {
         //Do updates of properties
         if(req.body.spice_type)
             toUpdate.spice_type=req.body.spice_type;
+            if(req.body.spice_name) toUpdate.spice_name = req.body.spice_name;
             if(req.body.spice_origin) toUpdate.spice_origin = req.body.spice_origin;
             if(req.body.spice_cost) toUpdate.spice_cost = req.body.spice_cost;
             let result = await toUpdate.save();
