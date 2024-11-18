@@ -14,13 +14,27 @@ exports.spice_list = async function(req, res) {
 // View all Spices
 exports.spice_view_all_Page = async function(req, res) {
     try {
-        const theSpices = await Spice.find(); // Retrieve all spices from the database
+        const theSpices = await Spice.find(); 
         res.render('spices', { title: 'Spice Search Results', results: theSpices });
     } catch (err) {
         res.status(500);
         res.send({"error": `${err}`});
     }
 };
+
+// Handle Spice delete on DELETE
+exports.spice_delete = async function(req, res) {
+    console.log("delete" + req.params.id)
+    try{
+        result = await Spice.findByIdAndDelete(req.params.id)
+        console.log("Removed" + result)
+        res.send(result)
+    }catch (err){
+        res.status(500)
+        res.send(`{"error":Error deleting ${err}}`);
+    }
+};
+
 
 // Get details of a specific Spice
 exports.spice_detail = async function(req, res) {
@@ -53,10 +67,7 @@ exports.spice_create_post = async function(req, res) {
     }
 };
 
-// Handle Spice delete on DELETE
-exports.spice_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: Spice delete DELETE ' + req.params.id);
-};
+
 
 // Handle Spice update on PUT
 exports.spice_update_put = async function(req, res) {
