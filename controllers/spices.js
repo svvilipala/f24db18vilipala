@@ -22,34 +22,6 @@ exports.spice_view_all_Page = async function(req, res) {
     }
 };
 
-// Handle Spice delete on DELETE
-exports.spice_delete = async function(req, res) {
-    console.log("delete" + req.params.id)
-    try{
-        result = await Spice.findByIdAndDelete(req.params.id)
-        console.log("Removed" + result)
-        res.send(result)
-    }catch (err){
-        res.status(500)
-        res.send(`{"error":Error deleting ${err}}`);
-    }
-};
-
-
-// Get details of a specific Spice
-exports.spice_detail = async function(req, res) {
-    console.log("detail" + req.params.id)
-    try{
-        result=await Spice.findById(req.params.id)
-        res.send(result)
-    } catch(error){
-        res.status(500)
-        res.send(`{"error":documnet for id${req.params.id}not found`);
-            }
-    };
-//     res.send('NOT IMPLEMENTED: Spice detail: ' + req.params.id);
-// };
-
 // Handle Spice creation on POST
 exports.spice_create_post = async function(req, res) {
     console.log(req.body);
@@ -69,6 +41,33 @@ exports.spice_create_post = async function(req, res) {
 
 
 
+   // Get details of a specific Spice
+exports.spice_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try{
+        result=await Spice.findById(req.params.id)
+        res.send(result)
+    } catch(error){
+        res.status(500)
+        res.send(`{"error":documnet for id${req.params.id}not found`);
+            }
+    };
+//     res.send('NOT IMPLEMENTED: Spice detail: ' + req.params.id);
+// };
+
+// Handle Spice delete on DELETE
+exports.spice_delete = async function(req, res) {
+    console.log("delete" + req.params.id)
+    try{
+        result = await Spice.findByIdAndDelete(req.params.id)
+        console.log("Removed" + result)
+        res.send(result)
+    }catch (err){
+        res.status(500)
+        res.send(`{"error":Error deleting ${err}}`);
+    }
+};
+
 // Handle Spice update on PUT
 exports.spice_update_put = async function(req, res) {
     console.log(`update on id${req.params.id}with body ${JSON.stringify(req.body)}`)
@@ -86,5 +85,7 @@ exports.spice_update_put = async function(req, res) {
         res.status(500)
         res.send(`{"error":${err}: Update for id ${req.params.id}failed`);
     }
-    }
+    };
+
+    
     
