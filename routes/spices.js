@@ -57,13 +57,23 @@ var router = express.Router();
  
 /* GET spices page. */
 router.get('/', spice_controlers.spice_view_all_Page);
- 
-router.get('/:id', spice_controlers.spice_detail);
 
+ 
+//router.get('/spices/:id', spice_controlers.spice_detail);
+router.get('/spices/:id', spice_controlers.spice_detail);
+ 
  
 // POST route for creating a new spice
 router.post('/', spice_controlers.spice_create_post);
 router.put('/:id', spice_controlers.spice_update_put);
  
-router.delete('/:id', spice_controlers.spice_delete);    
+router.delete('/:id', spice_controlers.spice_delete);
+ 
+ 
+/* GET detail costume page */
+router.get('/detail', spice_controlers.spice_view_one_Page);
+
+
+
+ 
 module.exports = router;

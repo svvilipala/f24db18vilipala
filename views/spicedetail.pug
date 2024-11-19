@@ -1,0 +1,22 @@
+extends layout
+ 
+block content
+  h1= title
+  - let spiceid = toShow._id
+  - let spice_name = toShow.spice_name
+  - let spice_origin = toShow.spice_origin
+  - let spice_cost = toShow.spice_cost
+   
+  div
+    div.row
+      div(class='spiceAttr mr-3') spice ID:
+      div #{spiceid}
+    div.row
+      div(class='spiceAttr mr-3') spice Type:
+      div #{spice_name}
+    div.row
+      div(class='spiceAttr mr-3') spice Origin:
+      div #{spice_origin}
+    div.row
+      div(class='spiceAttr mr-3') spice Cost:
+      div #{spice_cost}

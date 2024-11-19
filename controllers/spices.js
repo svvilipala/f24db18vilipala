@@ -1,6 +1,6 @@
 // controllers/spice.js
-var Spice = require('../models/spices'); 
-
+var Spice = require('../models/spices');
+ 
 // List of all Spices
 exports.spice_list = async function(req, res) {
     try {
@@ -10,18 +10,18 @@ exports.spice_list = async function(req, res) {
         res.status(500).send({"error": `${err}`});
     }
 };
-
+ 
 // View all Spices
 exports.spice_view_all_Page = async function(req, res) {
     try {
-        const theSpices = await Spice.find(); 
+        const theSpices = await Spice.find();
         res.render('spices', { title: 'Spice Search Results', results: theSpices });
     } catch (err) {
         res.status(500);
         res.send({"error": `${err}`});
     }
 };
-
+ 
 // Handle Spice creation on POST
 exports.spice_create_post = async function(req, res) {
     console.log(req.body);
@@ -38,23 +38,24 @@ exports.spice_create_post = async function(req, res) {
         res.send({"error": `${err}`});
     }
 };
-
-
-
+ 
+ 
+ 
    // Get details of a specific Spice
-exports.spice_detail = async function(req, res) {
-    console.log("detail" + req.params.id)
-    try{
-        result=await Spice.findById(req.params.id)
-        res.send(result)
-    } catch(error){
-        res.status(500)
-        res.send(`{"error":documnet for id${req.params.id}not found`);
-            }
-    };
+   exports.spice_detail = async function(req, res) {
+    console.log("detail" + req.params.id); // Log the ID to verify
+    try {
+        // Use findById to fetch the spice by ID from the database
+        let result = await Spice.findById(req.params.id);
+        res.send(result); // Send the spice details as JSON
+    } catch (error) {
+        res.status(500); // Send an error status if not found
+        res.send(`{"error": "Document for id ${req.params.id} not found"}`);
+    }
+};
 //     res.send('NOT IMPLEMENTED: Spice detail: ' + req.params.id);
 // };
-
+ 
 // Handle Spice delete on DELETE
 exports.spice_delete = async function(req, res) {
     console.log("delete" + req.params.id)
@@ -67,7 +68,9 @@ exports.spice_delete = async function(req, res) {
         res.send(`{"error":Error deleting ${err}}`);
     }
 };
-
+ 
+ 
+ 
 // Handle Spice update on PUT
 exports.spice_update_put = async function(req, res) {
     console.log(`update on id${req.params.id}with body ${JSON.stringify(req.body)}`)
@@ -86,6 +89,22 @@ exports.spice_update_put = async function(req, res) {
         res.send(`{"error":${err}: Update for id ${req.params.id}failed`);
     }
     };
+ 
+   
+// Handle a show one view with id specified by query
+exports.spice_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id); // Log the ID to debug
+    try {
+        let result = await Spice.findById(req.query.id); // Find the spice by ID
+        if (result) {
+            res.render('spicedetail', { title: 'spice Detail', toShow: result });
+        } else {
+            res.status(404).send(`{'error': 'spice not found'}`);
+        }
+    } catch (err) {
+        res.status(500).send(`{'error': '${err}'}`);
+    }
+};
 
-    
-    
+
+ 
