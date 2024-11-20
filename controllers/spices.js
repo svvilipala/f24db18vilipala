@@ -132,4 +132,18 @@ exports.spice_update_Page = async function (req, res) {
         res.status(500).send(`{'error': '${err}'}`);
     }
 };
+
+// Handle a delete one view with id from query
+exports.spice_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Spice.findById(req.query.id)
+    res.render('spicedelete', { title: 'Spice Delete', toShow:
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
  

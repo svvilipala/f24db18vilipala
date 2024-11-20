@@ -26,7 +26,7 @@ router.get('/create', spice_controlers.spice_create_Page);
 router.get('/update', spice_controlers.spice_update_Page);
 
 /* GET delete costume page */
-//router.get('/delete', spice_controlers.spice_delete_Page);
+router.get('/delete', spice_controlers.spice_delete_Page);
 
 
 module.exports = router;
