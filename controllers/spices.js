@@ -1,6 +1,6 @@
 // controllers/spice.js
-var Spice = require('../models/spices');
- 
+var Spice = require('../models/spices'); 
+
 // List of all Spices
 exports.spice_list = async function(req, res) {
     try {
@@ -10,18 +10,18 @@ exports.spice_list = async function(req, res) {
         res.status(500).send({"error": `${err}`});
     }
 };
- 
+
 // View all Spices
 exports.spice_view_all_Page = async function(req, res) {
     try {
-        const theSpices = await Spice.find();
+        const theSpices = await Spice.find(); 
         res.render('spices', { title: 'Spice Search Results', results: theSpices });
     } catch (err) {
         res.status(500);
         res.send({"error": `${err}`});
     }
 };
- 
+
 // Handle Spice creation on POST
 exports.spice_create_post = async function(req, res) {
     console.log(req.body);
@@ -38,9 +38,9 @@ exports.spice_create_post = async function(req, res) {
         res.send({"error": `${err}`});
     }
 };
- 
- 
- 
+
+
+
    // Get details of a specific Spice
    exports.spice_detail = async function(req, res) {
     console.log("detail" + req.params.id); // Log the ID to verify
@@ -55,7 +55,7 @@ exports.spice_create_post = async function(req, res) {
 };
 //     res.send('NOT IMPLEMENTED: Spice detail: ' + req.params.id);
 // };
- 
+
 // Handle Spice delete on DELETE
 exports.spice_delete = async function(req, res) {
     console.log("delete" + req.params.id)
@@ -68,9 +68,9 @@ exports.spice_delete = async function(req, res) {
         res.send(`{"error":Error deleting ${err}}`);
     }
 };
- 
- 
- 
+
+
+
 // Handle Spice update on PUT
 exports.spice_update_put = async function(req, res) {
     console.log(`update on id${req.params.id}with body ${JSON.stringify(req.body)}`)
@@ -89,8 +89,8 @@ exports.spice_update_put = async function(req, res) {
         res.send(`{"error":${err}: Update for id ${req.params.id}failed`);
     }
     };
- 
-   
+
+    
 // Handle a show one view with id specified by query
 exports.spice_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id); // Log the ID to debug
@@ -107,4 +107,29 @@ exports.spice_view_one_Page = async function(req, res) {
 };
 
 
+// Handle building the view for creating a spice.
+// No body, no in-path parameter, no query.
+// Does not need to be async
+exports.spice_create_Page = function (req, res) {
+    console.log("create view");
+    try {
+        res.render('spicecreate', { title: 'spice Create' });
+    } catch (err) {
+        res.status(500).send(`{'error': '${err}'}`);
+    }
+};
+
+
+// Handle building the view for updating a spice.
+// Query provides the id
+
+exports.spice_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id);
+    try {
+        let result = await Spice.findById(req.query.id);
+        res.render('spiceupdate', { title: 'spice Update', toShow: result });
+    } catch (err) {
+        res.status(500).send(`{'error': '${err}'}`);
+    }
+};
  

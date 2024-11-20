@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1= title
+    form(id='spiceForm', action="/resource/spices", method="POST")
+        div.form-group
+            label.spiceAttr(for='spice_name') spice name
+            input#spice_name(type='text', name='spice_name')
+        div.form-group
+            label.spiceAttr(for='spice_origin') spice origin
+            input#spice_origin(type='text', name='spice_origin')
+        div.form-group
+            label.spiceAttr(for='spice_cost') spice Cost
+            input#cost(type='number', name='spice_cost')
+        input(type="submit")
+
+    script.
+        document.forms['spiceForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // Indicate submission
+            alert("Submitting form...");
+            fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // Serialize the form
+            }).then((resp) => {
+                return resp.json(); // Handle server response
+            }).then((body) => {
+                alert("Save succeeded!");
+            }).catch((error) => {
+                alert("Save failed: " + error);
+            });
+        });
