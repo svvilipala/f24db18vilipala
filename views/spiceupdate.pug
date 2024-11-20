@@ -1,53 +1,55 @@
 block content
     h1= title
-
-    // Define variables for readability
-    - let spiceid = toShow._id
-    - let spice_name = toShow.spice_name
-    - let spice_cost = toShow.spice_cost
-    - let spice_origin = toShow.spice_origin
-
-    div.row(class='mb-2')
-        div.mr-1 ID is:
-        div #{spiceid}
-
-    // Generate the action URL for the PUT request
-    - let actionid = "/spices/" + spiceid
-    form(id='spiceForm', action=actionid, method="PUT")
-        div.form-group
-            label.spiceAttr(for='spice_name') Spice Name
-            input#spice_name(type='text', name='spice_name', value=spice_name, required=true)
-        div.form-group
-            label.spiceAttr(for='spice_origin') Spice Origin
-            input#spice_origin(type='text', name='spice_origin', value=spice_origin, required=true)
-        div.form-group
-            label.spiceAttr(for='spice_cost') Spice Cost
-            input#spice_cost(type='number', name='spice_cost', value=spice_cost, min=0, step="0.01")
-        input(type="submit", value="Update")
-
-    script.
-        document.forms['spiceForm'].addEventListener('submit', (event) => {
-            event.preventDefault();
-            // Indicate submission
-            alert("Submitting update...");
-            
-            // Send a PUT request with serialized form data
-            fetch(event.target.action, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(Object.fromEntries(new FormData(event.target))) // Serialize form data to JSON
-            })
-            .then((resp) => {
-                if (!resp.ok) throw new Error("Failed to update spice");
-                return resp.json();
-            })
-            .then((body) => {
-                alert("Update succeeded!");
-                console.log("Server response:", body);
-            })
-            .catch((error) => {
-                alert("Update failed: " + error.message);
-            });
-        });
+    if (toShow == null)
+      h2 No instance to delete
+    else
+      // Define variables for readability
+      - let spiceid = toShow._id
+      - let spice_name = toShow.spice_name
+      - let spice_cost = toShow.spice_cost
+      - let spice_origin = toShow.spice_origin
+  
+      div.row(class='mb-2')
+          div.mr-1 ID is:
+          div #{spiceid}
+  
+      // Generate the action URL for the PUT request
+      - let actionid = "/spices/" + spiceid
+      form(id='spiceForm', action=actionid, method="PUT")
+          div.form-group
+              label.spiceAttr(for='spice_name') Spice Name
+              input#spice_name(type='text', name='spice_name', value=spice_name, required=true)
+          div.form-group
+              label.spiceAttr(for='spice_origin') Spice Origin
+              input#spice_origin(type='text', name='spice_origin', value=spice_origin, required=true)
+          div.form-group
+              label.spiceAttr(for='spice_cost') Spice Cost
+              input#spice_cost(type='number', name='spice_cost', value=spice_cost, min=0, step="0.01")
+          input(type="submit", value="Update")
+  
+      script.
+          document.forms['spiceForm'].addEventListener('submit', (event) => {
+              event.preventDefault();
+              // Indicate submission
+              alert("Submitting update...");
+              
+              // Send a PUT request with serialized form data
+              fetch(event.target.action, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(Object.fromEntries(new FormData(event.target))) // Serialize form data to JSON
+              })
+              .then((resp) => {
+                  if (!resp.ok) throw new Error("Failed to update spice");
+                  return resp.json();
+              })
+              .then((body) => {
+                  alert("Update succeeded!");
+                  console.log("Server response:", body);
+              })
+              .catch((error) => {
+                  alert("Update failed: " + error.message);
+              });
+          });
