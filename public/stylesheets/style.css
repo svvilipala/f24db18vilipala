@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lavender;
 }
 
 a {
@@ -8,7 +9,8 @@ a {
 }
 .spiceAttr {
   background-color: aquamarine;
-  width: 120px;
+  text-align: center;
+  width: 300px;
   margin-right: 15px;
   padding: 5px;
   border-radius: 4px;
@@ -20,9 +22,10 @@ h1{
 }
 
 input{
-  width: 150px;
+  width: 250px;
   border-style:double;
   margin: 10px;
+  background-color: bisque;
 }
 
  input[type= submit] {
