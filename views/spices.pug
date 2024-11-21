@@ -1,15 +1,24 @@
+extends layout
+
 block content
   h1= title
   p #{title} page is running by Sri Vidya Vilipala
-  ul
-    each spices in results 
-      ul 
-        li= spices.spice_name
-        li= spices.spice_origin 
-        li= spices.spice_cost 
+  - let items = results
+  div(class="container-fluid")
+    div(class="col m-1")
+      each item in items
+        - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+        - let destination1 = `dispatch(\"/resource/detail?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/resource/delete?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.spice_name}(#{item.spice_origin}) is #{item.spice_cost}
+        button.btn( class="btn-primary m-1", onclick= destination) Update
         br
-
-
+        br
+        
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
   //- -   
   //-   let results = [
   //-     {
