@@ -1,23 +1,33 @@
 extends layout
 
 block content
-  h1= title
-  p This app is built using Express and Pug and includes a sample button.
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/spices") Take me to spices
+    br
+    a(href="/logout") Logout
 
-  // Sample Button
-  button(type="button", class="btn btn-primary", onclick="boost()") Sample Button
-  div#boost Add in extra
+  //- h1= title
+  //- p This app is built using Express and Pug and includes a sample button.
 
-  script.
-    let value = 0;
-    let amt = 3;
+  //- // Sample Button
+  //- button(type="button", class="btn btn-primary", onclick="boost()") Sample Button
+  //- div#boost Add in extra
 
-    function boost() {
-      amt += 1;
-      value += amt;
-      document.getElementById('boost').textContent = `Boosted ${value} by ${amt}.`;
-    }
-    </script>
-    <br>
-    <br>
-    <a href="/spices">Click for Spices</a>
+  //- script.
+  //-   let value = 0;
+  //-   let amt = 3;
+
+  //-   function boost() {
+  //-     amt += 1;
+  //-     value += amt;
+  //-     document.getElementById('boost').textContent = `Boosted ${value} by ${amt}.`;
+  //-   }
+  //-   </script>
+  //-   <br>
+  //-   <br>
+  //-   <a href="/spices">Click for Spices</a>

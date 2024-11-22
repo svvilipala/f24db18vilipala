@@ -2,7 +2,13 @@
 var express = require('express');
 var spice_controlers = require('../controllers/spices');
 var router = express.Router();
- 
+
+const secured = (req, res, next) => {
+    if (req.user){
+    return next();
+    }
+    res.redirect("/login");
+    }
 /* GET spices page. */
 router.get('/', spice_controlers.spice_view_all_Page);
  
@@ -23,7 +29,7 @@ router.get('/detail', spice_controlers.spice_view_one_Page);
 router.get('/create', spice_controlers.spice_create_Page);
 
 /* GET update costume page */
-router.get('/update', spice_controlers.spice_update_Page);
+router.get('/update', secured, spice_controlers.spice_update_Page);
 
 /* GET delete costume page */
 router.get('/delete', spice_controlers.spice_delete_Page);

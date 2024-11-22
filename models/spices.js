@@ -14,9 +14,11 @@ const spiceSchema = mongoose.Schema({
     required: true
   },
   spice_cost: {
-    type: Number
+    type: Number,
+    min: [10],
+    max: [1000]
   }
-})
+});
 
 module.exports = mongoose.model("Spice",
     spiceSchema)

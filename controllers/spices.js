@@ -35,11 +35,9 @@ exports.spice_create_post = async function(req, res) {
         res.send(result); // Send back the saved spice document
     } catch (err) {
         res.status(500);
-        res.send({"error": `${err}`});
+        res.json({"error": `${err}`});
     }
 };
-
-
 
    // Get details of a specific Spice
    exports.spice_detail = async function(req, res) {
