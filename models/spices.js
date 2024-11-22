@@ -7,18 +7,22 @@ const spiceSchema = mongoose.Schema({
 
   spice_name: {
     type: String,
-    required: true
+    required: true,
+    maxLength: 20,
+    minLength: 1
   },
   spice_origin: {
     type: String,
-    required: true
+    required: true,
+    maxLength: 30,
+    minLength: 1
   },
   spice_cost: {
     type: Number,
-    min: [10],
-    max: [1000]
+    maxLength: 1000,
+    minLength: 1
   }
-});
+})
 
 module.exports = mongoose.model("Spice",
     spiceSchema)
