@@ -6,13 +6,13 @@ block content
         div.form-group
             label.spiceAttr(for='spice_name') spice name
             input#spice_name(type='text', name='spice_name')
-            if errors && errors.cost
-                span.error= errors.cost.message
+            if errors && errors.spice_name
+                span.error= errors.spice_name.message
         div.form-group
             label.spiceAttr(for='spice_origin') spice origin
             input#spice_origin(type='text', name='spice_origin')
-            if errors && errors.cost
-                span.error= errors.cost.message
+            if errors && errors.spice_origin
+                span.error= errors.spice_origin.message
         div.form-group
             label.spiceAttr(for='spice_cost') spice Cost
             input#cost(type='number', name='spice_cost')
