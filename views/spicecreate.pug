@@ -12,8 +12,8 @@ block content
         div.form-group
             label.spiceAttr(for='spice_cost') spice Cost
             input#cost(type='number', name='spice_cost')
-            if errors && errors.age
-                span.error= errors.age.message
+            if errors && errors.cost
+                span.error= errors.cost.message
         input(type="submit")
 
     script.
